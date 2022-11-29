@@ -8,9 +8,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section class="calculator">
+    <div class="calculator">
+        <!-- make sure to disabled the input so no one can write anything in the input... only by clicking in the number and value 0 to show 0 for first time-->
         <input type="text" class="calculator-screen" value="0" disabled>
-    </section>
+        <!-- now build our buttons -->
+        <div class="calculator-buttons">
+            <button type="button" value="7">7</button>
+            <button type="button" value="8">8</button>
+            <button type="button" value="9">9</button>
+            <button type="button" value="/">&divide;</button>
+
+            <button type="button" value="4">4</button>
+            <button type="button" value="5">5</button>
+            <button type="button" value="6">6</button>
+            <button type="button" value="*">&times;</button>
+
+            <button type="button" value="1">1</button>
+            <button type="button" value="2">2</button>
+            <button type="button" value="3">3</button>
+            <button type="button" value="+">&plus;</button>
+
+            <button type="button" value="0">0</button>
+            <button type="button" value=".">.</button>
+            <button type="button" value="-">&minus;</button>
+            <button type="button" value="AC">Ac</button>
+
+            <button type="button" value="=">&equals;</button>
+        </div>
+    </div>
 
 
     <script src="script.js"></script>
