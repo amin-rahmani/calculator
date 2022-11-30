@@ -36,6 +36,20 @@ const calculator = {
         if(this.displayText === '0'){
             this.displayText = ''
         }
-        
+        //let's check and see is there any special buttons we click on it
+        switch(value){
+            case '=' :
+                //calculate the answer
+                break;
+            case 'AC' :
+                //clear screen and stored values
+            case '.' :
+                //make it float
+                if(this.displayText == 0){
+                    //pass '0.' into add text method
+                }else{
+                    //add value to text string
+                }
+        }
     }
 }
