@@ -13,12 +13,12 @@
 //should prevent invalid input(operators next to each other,two decimal points)
 
 const keys = document.querySelector('.calculator-buttons');
-keys.addEventListener('click',event =>{
-    const {target} = event;
-    const {value} = target;
-    if(!target.matches('button')){
+keys.addEventListener('click', event => {
+    const { target } = event;
+    const { value } = target;
+    if (!target.matches('button')) {
         return;
-    }else{
+    } else {
         //pass value to parse method
         //do this first and see the difference
         // console.log(event);
@@ -29,24 +29,25 @@ keys.addEventListener('click',event =>{
 })
 //let's build calculator factory
 const calculator = {
-    displayText :'0',
-    prevTotal : null,
+    displayText: '0',
+    prevTotal: null,
 
-    parseInput(value){
+    parseInput(value) {
         //let's check and see is there any special buttons we click on it
-        switch(value){
-            case '=' :
+        switch (value) {
+            case '=':
                 //calculate the answer
+                this.calcAnswer(this.displayText)
                 break;
-            case 'AC' :
+            case 'AC':
                 //clear screen and stored values
                 break;
-            case '.' :
+            case '.':
                 //make it float
-                if(this.displayText == 0){
+                if (this.displayText == 0) {
                     //pass '0.' into add text method
                     this.addText('0.')
-                }else{
+                } else {
                     //add value to text string
                     this.addText(value)
                 }
@@ -58,16 +59,16 @@ const calculator = {
         }
     },
 
-    addText(value){
-        if(this.displayText === '0'){
+    addText(value) {
+        if (this.displayText === '0') {
             this.displayText = ''
-        }else if(this.prevTotal !== null){
+        } else if (this.prevTotal !== null) {
             this.displayText = this.prevTotal
             this.prevTotal = null
         }
         /*user has entered an invalid sequence don't proceed*/
-        if(isNaN(+(value)) && isNaN(this.displayText)){
-            if(isNaN(this.displayText.slice(-1))){
+        if (isNaN(+(value)) && isNaN(this.displayText)) {
+            if (isNaN(this.displayText.slice(-1))) {
                 return;
             }
         }
@@ -76,7 +77,14 @@ const calculator = {
         this.outputText(this.displayText)
     },
 
-    outputText(text){
+    outputText(text) {
         document.querySelector('.calculator-screen').value = text
+    },
+
+    calcAnswer(equation) {
+        //we could do this too
+        // console.log(eval(equation));
+        let result = Function("return " + equation)()
+        this.outputText(result)
     }
 }
