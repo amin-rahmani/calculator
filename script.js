@@ -33,9 +33,6 @@ const calculator = {
     prevTotal : null,
 
     parseInput(value){
-        if(this.displayText === '0'){
-            this.displayText = ''
-        }
         //let's check and see is there any special buttons we click on it
         switch(value){
             case '=' :
@@ -43,13 +40,39 @@ const calculator = {
                 break;
             case 'AC' :
                 //clear screen and stored values
+                break;
             case '.' :
                 //make it float
                 if(this.displayText == 0){
                     //pass '0.' into add text method
+                    addText('0.')
                 }else{
                     //add value to text string
+                    addText(value)
                 }
+                break;
+            default:
+                //add value to text string
+                addText(value)
+                break;
         }
-    }
+    },
+
+    addText(value){
+        if(this.displayText === '0'){
+            this.displayText = ''
+        }else if(this.prevTotal !== null){
+            this.displayText = this.prevTotal
+            this.prevTotal = null
+        }
+        /*user has entered an invalid sequence don't proceed*/
+        if(isNaN(+(value)) && isNaN(this.displayText)){
+            if(isNaN(this.displayText.slice(-1))){
+                return;
+            }
+        }
+        this.displayText += value
+        //output display text to screen
+    },
+
 }
