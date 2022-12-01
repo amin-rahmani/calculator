@@ -45,15 +45,15 @@ const calculator = {
                 //make it float
                 if(this.displayText == 0){
                     //pass '0.' into add text method
-                    addText('0.')
+                    this.addText('0.')
                 }else{
                     //add value to text string
-                    addText(value)
+                    this.addText(value)
                 }
                 break;
             default:
                 //add value to text string
-                addText(value)
+                this.addText(value)
                 break;
         }
     },
@@ -73,6 +73,10 @@ const calculator = {
         }
         this.displayText += value
         //output display text to screen
+        this.outputText(this.displayText)
     },
 
+    outputText(text){
+        document.querySelector('.calculator-screen').value = text
+    }
 }
